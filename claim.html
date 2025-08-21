@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Your $0.1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000000 0%, #2c2c2c 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: #111;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #000, #222);
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #aaa;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .amount {
+            font-size: 60px;
+            font-weight: 800;
+            margin: 20px 0;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(to bottom, #fff, #bbb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .claim-btn {
+            background: linear-gradient(to right, #fff, #ddd);
+            color: #000;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .claim-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .claim-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .info {
+            color: #999;
+            font-size: 12px;
+            margin-top: 25px;
+            line-height: 1.6;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .footer {
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #333;
+        }
+        
+        .coin {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ddd 0%, #fff 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coin:before {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #aaa 0%, #777 100%);
+        }
+        
+        .coin:after {
+            content: "{N}";
+            position: absolute;
+            font-size: 40px;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .shimmer {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: rotate(45deg) translateY(-100%);
+            }
+            50% {
+                transform: rotate(45deg) translateY(100%);
+            }
+            100% {
+                transform: rotate(45deg) translateY(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CLAIM YOUR REWARD</h1>
+            <p class="subtitle">Congratulations • Claim today's N.T.C</p>
+        </div>
+        
+        <div class="content">
+            <div class="coin">
+                <div class="shimmer"></div>
+            </div>
+            
+            <p class="subtitle">Your available reward</p>
+            <div class="amount pulse">{N} 0.1</div>
+            
+            <button class="claim-btn" id="claimButton">CLAIM NOW</button>
+            
+            <p class="info">By claiming, you agree to our Terms of Service. Reward will be credited to your account within 24 hours. Minimum withdrawal amount is $10.</p>
+        </div>
+        
+        <div class="footer">
+            © 2023 RewardApp • All rights reserved
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const claimButton = document.getElementById('claimButton');
+            
+            claimButton.addEventListener('click', function() {
+                // Button animation and state change
+                claimButton.textContent = 'PROCESSING...';
+                claimButton.style.opacity = '0.8';
+                claimButton.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(function() {
+                    claimButton.textContent = 'CLAIMED!';
+                    claimButton.style.background = 'linear-gradient(to right, #00ff00, #00cc00)';
+                    claimButton.style.color = '#000';
+                    
+                    // Show confirmation message
+                    const confirmation = document.createElement('div');
+                    confirmation.textContent = 'Success! {N} 0.1 has been added to your accoumt.';
+                    confirmation.style.color = '#0f0';
+                    confirmation.style.marginTop = '15px';
+                    confirmation.style.fontWeight = 'bold';
+                    
+                    document.querySelector('.content').appendChild(confirmation);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
